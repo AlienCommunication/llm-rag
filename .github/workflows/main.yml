@@ -19,8 +19,9 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     
     - name: Build and push Docker image
-      uses: docker/build-push-action@v2
+      uses: docker/build-push-action@v4
       with:
         context: .
+        file: ./Dockerfile  # Note the capital 'D' here
         push: true
         tags: kris0022/rag-news-pipeline:latest

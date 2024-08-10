@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rag-news-pipeline
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rag-news-pipeline
+  template:
+    metadata:
+      labels:
+        app: rag-news-pipeline
+    spec:
+      containers:
+      - name: rag-news-pipeline
+        image: your-dockerhub-username/rag-news-pipeline:latest
+        ports:
+        - containerPort: 8501

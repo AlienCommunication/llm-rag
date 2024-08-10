@@ -1,0 +1,15 @@
+scraper:
+  urls:
+    - https://timesofindia.indiatimes.com
+    - https://www.thehindu.com
+    - https://www.indiatimes.com
+
+embedder:
+  model: all-MiniLM-L6-v2
+
+retriever:
+  top_k: 5
+
+generator:
+  model: gpt2
+  max_length: 100

@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rag-news-pipeline
+  namespace: poc-llm
 spec:
   replicas: 1
   selector:
@@ -14,6 +15,6 @@ spec:
     spec:
       containers:
       - name: rag-news-pipeline
-        image: your-dockerhub-username/rag-news-pipeline:latest
+        image: kris0022/rag-news-pipeline:latest
         ports:
         - containerPort: 8501

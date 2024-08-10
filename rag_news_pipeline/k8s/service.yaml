@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: rag-news-pipeline-service
+  namespace: poc-llm
 spec:
   selector:
     app: rag-news-pipeline

@@ -10,18 +10,35 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     
     - name: Login to DockerHub
-      uses: docker/login-action@v1
+      uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     
+    - name: List directory contents
+      run: |
+        echo "Root directory:"
+        ls -la
+        echo "rag_news_pipeline directory:"
+        ls -la rag_news_pipeline
+        echo "Dockerfile contents:"
+        cat rag_news_pipeline/Dockerfile
+    
     - name: Build and push Docker image
       uses: docker/build-push-action@v4
       with:
-        context: .
-        file: ./Dockerfile  # Note the capital 'D' here
+        context: ./rag_news_pipeline
+        file: ./rag_news_pipeline/Dockerfile
         push: true
         tags: kris0022/rag-news-pipeline:latest
+      
+    - name: Debug on failure
+      if: failure()
+      run: |
+        echo "Build failed. Checking Docker version:"
+        docker --version
+        echo "Trying to build locally:"
+        docker build -t kris0022/rag-news-pipeline:latest ./rag_news_pipeline

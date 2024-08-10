@@ -23,4 +23,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: kris00/rag-news-pipeline:latest
+        tags: kris0022/rag-news-pipeline:latest

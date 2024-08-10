@@ -4,7 +4,7 @@ metadata:
   name: rag-news-pipeline
   namespace: poc-llm
 spec:
-  replicas: 1
+  replicas: 1 
   selector:
     matchLabels:
       app: rag-news-pipeline
@@ -16,5 +16,6 @@ spec:
       containers:
       - name: rag-news-pipeline
         image: kris0022/rag-news-pipeline:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8501
